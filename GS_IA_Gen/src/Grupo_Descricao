@@ -1,5 +1,50 @@
 Usar esse arquivo para:
 
 	1) Identificar os membros do grupo
+		Ana Beatriz dos Santos Souza 	Rm 96229;
+		Daniel Henrique Franceschi Marques	Rm 95175 e
+		Yann Louzeiro Reis Santana 	Rm 93609.
 	
-	2) Apresentar a descri��o do projeto desenvolvido
+	2) Apresentar a descri��o do projeto desenvolvido
+		a) Para o estabelecimento de parâmetros ideais para cada atributo escolhemos de forma generalizada o meio termo dos valores destes atributos.
+		Adicionamos o atributo de Concentração de Potássio de acordo com informações do link: https://rehagro.com.br/blog/como-interpretar-uma-analise-de-solo-e-fazer-os-calculos-de-recomendacao/#:~:text=Recomenda%C3%A7%C3%A3o%20de%20K%20para%20manter%20um%20n%C3%ADvel%20de%20seguran%C3%A7a%20no%20solo%3A&text=Recomenda%C3%A7%C3%A3o%20de%20pot%C3%A1ssio%3A,1%20kg%20de%20K2O%2Fha.
+		Neste é dito que a recomendação de Potássio para produção e Vegetação é de 205,5 kg/ha. Adicionamos esse valor de forma generalizada em um int que varia de 100 a 210.
+
+		Logo, os valores ideais determinados são de: 		
+			// int valorIdealUmidade = 50;
+			// int valorIdealPotassio = 150;
+			// float valorIdealPH = 6;
+
+		b) O critério para a geração de alerta foi usar margens de aceitação, ou seja, criar alertas para que quando um parâmetro esteja fora dessa margem ele alertar.
+			Para a umidade foi definido margem de aceitação de 25 a menos ou a mais do valor ideal.
+				Margem de aceitação Mínima = 25
+				Ideal = 50
+				Margem de aceitação Máxima = 75
+			Para o Potássio foi definido margem de aceitação de 35 a menos do valor ideal e 50 a mais(visto que não há grandes problemas ter muito potássio no solo)
+				Margem de aceitação Mínima = 115
+				Ideal = 150
+				Margem de aceitação Máxima = 200
+			Para o PH foi definido margem de aceitação de até 2 a menos ou a mais do valor ideal.
+				Margem de aceitação Mínima = 4
+				Ideal = 6
+				Margem de aceitação Máxima = 8
+
+	3) Descrição do sistema:
+		O sistema já tem algumas coordenadas pré salvas, sendo assim desnecessário a verificação de ""isEmpty"" da lista.
+		A inicialização do programa se dará pelas opções disponíveis para o agricultor, são essas:
+			0 - Encerrar o atendimento
+			1 - Mostrar lista de registros
+			2 - Verificar se há alguma coordenada com alerta
+			3 - Pesquisar coordenada
+			4 - Remover coordenada
+			5 - Adicionar nova coordenada
+		
+		Descrição das opções:
+			0 - Encerra o programa.
+			1 - Mostra uma lista com TODOS os Registro (coordenada de cada senhor + seus atributos e valores destes)
+			2- Faz uma verificação de todos os registros, e caso pelo menos um dos atributos do registo esteja fora dos aceitáveis, esse registo é adicionado em uma fila de sensores.
+			Logo de adicionado todos os registros que não estão 100% aceitáveis na fila, é "printado" no programa todos os registros da fila.
+			3 - Pesquisar coordenada inserida e "printa" o registro dessa coordenada.
+			4 - Remove coordenada inserida.
+			5 - Adiciona nova coordenada, sendo possível para o agricultor escolher se deseja digitar manualmente todos os atributos do sensor ou se ele prefere deixar que a AI/IA atribua esses valores por ele.
+			obs.: qualquer número digitado fora desses é inválido.

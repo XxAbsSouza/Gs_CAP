@@ -20,12 +20,6 @@ public class Monitora {
 
 		ListaSensores sensores = new ListaSensores();
 
-		// // Valores ideais + margem de conformidade
-		// int valorIdealUmidade = 50;
-		// int valorIdealPotassio = 150;
-		// float valorIdealPH = 6;
-		// //
-
 		String coordenadasSensores[] = { "47o55�44�W,21o00�34�S",
 				"47o55�42�W,21o00�35�S",
 				"47o55�39�W,21o00�37�S",
@@ -129,6 +123,7 @@ public class Monitora {
 			}
 		} while (option != 0);
 
+		sc.close();
 	}
 
 }

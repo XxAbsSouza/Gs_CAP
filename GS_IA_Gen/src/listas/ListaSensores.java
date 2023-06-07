@@ -87,11 +87,11 @@ public class ListaSensores {
         NO aux = lista;
 
         while (aux != null) {
-            if (aux.dado.getUmidade() < 35 || aux.dado.getUmidade() > 75) {
+            if (aux.dado.getUmidade() < 25 || aux.dado.getUmidade() > 75) {
                 filaAlertas.enqueue(aux.dado);
             } else if (aux.dado.getConcenPotassio() < 115 || aux.dado.getConcenPotassio() > 200) {
                 filaAlertas.enqueue(aux.dado);
-            } else if (aux.dado.getPh() < 4 || aux.dado.getPh() > 7) {
+            } else if (aux.dado.getPh() <= 3 || aux.dado.getPh() > 8) {
                 filaAlertas.enqueue(aux.dado);
             } else {
                 if (filaAlertas.isEmpty()) {
