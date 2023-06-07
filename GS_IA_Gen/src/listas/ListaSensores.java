@@ -42,14 +42,14 @@ public class ListaSensores {
     public boolean remove(String coordenadaString) {
         boolean achou = false;
         if (lista != null) {
-            if (coordenadaString == lista.dado.getNumSensor()) {
+            if (coordenadaString.equalsIgnoreCase(lista.dado.getNumSensor())) {
                 achou = true;
                 lista = lista.prox;
             } else {
                 NO aux = lista;
 
                 while (aux.prox != null && !achou) {
-                    if (aux.prox.dado.getNumSensor() != coordenadaString)
+                    if (!coordenadaString.equalsIgnoreCase(aux.prox.dado.getNumSensor()))
                         aux = aux.prox;
                     else {
                         achou = true;
@@ -62,23 +62,54 @@ public class ListaSensores {
     }
     // ----------------
 
-    public int contaNos() {
-        int cont = 0;
-        /* percorrer cada no da lista para obter quantidade de nos */
+    public void pesquisaCoordenada(String coordenadaString) {
         NO aux = lista;
+        boolean achei = true;
+
         while (aux != null) {
-            cont++;
+            if (coordenadaString.equalsIgnoreCase(aux.dado.getNumSensor())) {
+                System.out.println("O registro da coordenada " + coordenadaString + ", é:" + "\n" + aux.dado);
+                achei = true;
+                break;
+            } else {
+                achei = false;
+            }
             aux = aux.prox;
         }
-        return cont;
+        if (achei == false) {
+            System.out.println("Coordenada inserida não foi encontrada.");
+        }
+    }
+
+    public void apresentarAlertas() {
+        FilaSensores filaAlertas = new FilaSensores();
+        filaAlertas.init();
+        NO aux = lista;
+
+        while (aux != null) {
+            if (aux.dado.getUmidade() < 35 || aux.dado.getUmidade() > 75) {
+                filaAlertas.enqueue(aux.dado);
+            } else if (aux.dado.getConcenPotassio() < 115 || aux.dado.getConcenPotassio() > 200) {
+                filaAlertas.enqueue(aux.dado);
+            } else if (aux.dado.getPh() < 4 || aux.dado.getPh() > 7) {
+                filaAlertas.enqueue(aux.dado);
+            } else {
+                if (filaAlertas.isEmpty()) {
+                    System.out.println("Não há coordenadas com alertas :)");
+                }
+            }
+            aux = aux.prox;
+        }
+        filaAlertas.printFila();
     }
 
     public void apresenta() {
         NO aux = lista;
         int cont = 1;
-        System.out.println("\n  ---**Lista**---");
+        System.out.println("\n  ---**Lista de Registros**---");
+        System.out.println();
         while (aux != null) {
-            System.out.println("Registro #" + cont + ":" + "\n" + aux.dado);
+            System.out.println("REGISTRO #" + cont + ":" + "\n" + aux.dado);
             System.out.println();
             aux = aux.prox;
             cont++;
