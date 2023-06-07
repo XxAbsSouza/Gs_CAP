@@ -1,4 +1,4 @@
-package listas;
+package filas;
 
 import entidades.RegistroSensor;
 

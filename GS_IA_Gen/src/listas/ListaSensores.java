@@ -1,6 +1,7 @@
 package listas;
 
 import entidades.RegistroSensor;
+import filas.FilaSensores;
 
 public class ListaSensores {
 
